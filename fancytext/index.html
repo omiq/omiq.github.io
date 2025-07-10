@@ -19,10 +19,11 @@
 
                 // register event listener for button click
                 const convertButton = document.getElementById("convertButton");
+                const outputText = document.getElementById("outputText");
                 convertButton.addEventListener("click", () => {
                     const inputText = document.getElementById("inputText").value;
                     const style = document.getElementById("styles").value;
-                    const outputText = convertToUnicodeStyle(inputText, style);
+                    outputText.textContent = convertToUnicodeStyle(inputText, style);
                 });
             });
         </script>
@@ -35,6 +36,6 @@
 
         </select>
         <button id="convertButton">Convert</button>
-        <p id="outputText"></p>
+        <p id="outputText">Output will appear here</p>
     </body>
 </html>
