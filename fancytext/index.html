@@ -3,6 +3,8 @@
         <title>Fancy Text Generator</title>
         <!-- bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <script src="convertToUnicodeStyle.js"></script>
         <script>
             const styles = availableStyles;
@@ -24,48 +26,79 @@
                 convertButton.addEventListener("click", () => {
                     const inputText = document.getElementById("inputText").value;
                     const style = document.getElementById("styles").value;
-                    outputText.textContent = convertToUnicodeStyle(inputText, style);
+                    outputText.value = convertToUnicodeStyle(inputText, style);
                 });
 
 
                 // register event listener for copy button click
                 const copyButton = document.getElementById("copyButton");
                 copyButton.addEventListener("click", () => {
-                    navigator.clipboard.writeText(outputText.textContent);
+                    navigator.clipboard.writeText(outputText.value);
                 });
             });
         </script>
     </head>
     <body>
-        <div class="container">
-            <h1 class="text-center">𝔽𝕒𝕟𝕔𝕪 𝕋𝕖𝕩𝕥 𝔾𝕖𝕟𝕖𝕣𝕒𝕥𝕠𝕣</h1>
-            <div class="row">
-                <div class="col-md-6">
-                    <input type="text" id="inputText" placeholder="Enter text to convert" size="80" class="form-control">
-                </div>
-            
-            
-                <div class="col-md-6">
-            <!-- styles dropdown populate using enum from convertToUnicodeStyle.js --> 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <select id="styles">
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <button id="convertButton">Convert</button>
+        <div class="container py-5">
+            <h1 class="text-center mb-4">𝔽𝕒𝕟𝕔𝕪 𝕋𝕖𝕩𝕥 𝔾𝕖𝕟𝕖𝕣𝕒𝕥𝕠𝕣</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="inputText" class="form-label">Enter text to convert</label>
+                                <input type="text" id="inputText" class="form-control" placeholder="Type your text here...">
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col">
+                                    <label for="styles" class="form-label">Choose style</label>
+                                    <select id="styles" class="form-select"></select>
+                                </div>
+                                <div class="col-auto d-flex align-items-end">
+                                    <button id="convertButton" class="btn btn-primary">
+                                        <i class="bi bi-magic"></i> Convert
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label class="form-label">Converted text</label>
+                                <div class="input-group">
+                                    <input type="text" id="outputText" class="form-control" readonly value="Output will appear here">
+                                    <button id="copyButton" class="btn btn-outline-secondary" type="button">
+                                        <i class="bi bi-clipboard"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>                    
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p id="outputText">Output will appear here</p>
-                </div>
-                <div class="col-md-6">
-                    <button id="copyButton">Copy to clipboard</button>
                 </div>
             </div>
         </div>
+        <script>
+            // Update outputText to be an input field
+            window.addEventListener("load", () => {
+                const stylesDropdown = document.getElementById("styles");
+                styles.forEach(style => {
+                    const option = document.createElement("option");
+                    option.value = style;
+                    option.textContent = convertToUnicodeStyle(style, style);
+                    stylesDropdown.appendChild(option);
+                });
+
+                const convertButton = document.getElementById("convertButton");
+                const outputText = document.getElementById("outputText");
+                convertButton.addEventListener("click", () => {
+                    const inputText = document.getElementById("inputText").value;
+                    const style = document.getElementById("styles").value;
+                    outputText.value = convertToUnicodeStyle(inputText, style);
+                });
+
+                const copyButton = document.getElementById("copyButton");
+                copyButton.addEventListener("click", () => {
+                    navigator.clipboard.writeText(outputText.value);
+                });
+            });
+        </script>
     </body>
 </html>
