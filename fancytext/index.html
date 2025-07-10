@@ -5,20 +5,25 @@
         <script src="convertToUnicodeStyle.js"></script>
         <script>
             const styles = availableStyles;
-            const stylesDropdown = document.getElementById("styles");
-            styles.forEach(style => {
-                const option = document.createElement("option");
-                option.value = style;
-                option.textContent = style;
-                stylesDropdown.appendChild(option);
-            });
 
-            // register event listener for button click
-            const convertButton = document.getElementById("convertButton");
-            convertButton.addEventListener("click", () => {
-                const inputText = document.getElementById("inputText").value;
-                const style = document.getElementById("styles").value;
-                const outputText = convertToUnicodeStyle(inputText, style);
+            // wait for the page to load
+            window.addEventListener("load", () => {
+                
+                const stylesDropdown = document.getElementById("styles");
+                styles.forEach(style => {
+                    const option = document.createElement("option");
+                    option.value = style;
+                    option.textContent = style;
+                    stylesDropdown.appendChild(option);
+                });
+
+                // register event listener for button click
+                const convertButton = document.getElementById("convertButton");
+                convertButton.addEventListener("click", () => {
+                    const inputText = document.getElementById("inputText").value;
+                    const style = document.getElementById("styles").value;
+                    const outputText = convertToUnicodeStyle(inputText, style);
+                });
             });
         </script>
     </head>
