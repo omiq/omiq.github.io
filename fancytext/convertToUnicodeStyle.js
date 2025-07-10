@@ -7,7 +7,11 @@ const unicodeStyles = {
   italic: {
     offsetLower: 0x1D44E,
     offsetUpper: 0x1D434,
-    offsetDigit: null
+    offsetDigit: null,
+    exceptions: {
+      h: 'ℎ', // Planck constant symbol
+      k: '𝑘'  // included, but can map directly if fallback needed
+    }
   },
   bold_italic: {
     offsetLower: 0x1D482,
