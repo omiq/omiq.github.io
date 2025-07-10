@@ -13,7 +13,7 @@
                 styles.forEach(style => {
                     const option = document.createElement("option");
                     option.value = style;
-                    option.textContent = style;
+                    option.textContent = convertToUnicodeStyle(style, style);
                     stylesDropdown.appendChild(option);
                 });
 
@@ -24,6 +24,12 @@
                     const inputText = document.getElementById("inputText").value;
                     const style = document.getElementById("styles").value;
                     outputText.textContent = convertToUnicodeStyle(inputText, style);
+                });
+
+                // register event listener for copy button click
+                const copyButton = document.getElementById("copyButton");
+                copyButton.addEventListener("click", () => {
+                    navigator.clipboard.writeText(outputText.textContent);
                 });
             });
         </script>
@@ -36,6 +42,6 @@
 
         </select>
         <button id="convertButton">Convert</button>
-        <p id="outputText">Output will appear here</p>
+        <p id="outputText">Output will appear here</p><button id="copyButton">Copy to clipboard</button>
     </body>
 </html>
