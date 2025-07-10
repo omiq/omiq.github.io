@@ -75,30 +75,6 @@
                 </div>
             </div>
         </div>
-        <script>
-            // Update outputText to be an input field
-            window.addEventListener("load", () => {
-                const stylesDropdown = document.getElementById("styles");
-                styles.forEach(style => {
-                    const option = document.createElement("option");
-                    option.value = style;
-                    option.textContent = convertToUnicodeStyle(style, style);
-                    stylesDropdown.appendChild(option);
-                });
-
-                const convertButton = document.getElementById("convertButton");
-                const outputText = document.getElementById("outputText");
-                convertButton.addEventListener("click", () => {
-                    const inputText = document.getElementById("inputText").value;
-                    const style = document.getElementById("styles").value;
-                    outputText.value = convertToUnicodeStyle(inputText, style);
-                });
-
-                const copyButton = document.getElementById("copyButton");
-                copyButton.addEventListener("click", () => {
-                    navigator.clipboard.writeText(outputText.value);
-                });
-            });
-        </script>
+ 
     </body>
 </html>
